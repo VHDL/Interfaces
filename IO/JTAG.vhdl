@@ -10,6 +10,11 @@
 -- -------------------------------------
 -- This package 
 --
+--   Interface name:    Joint Test Action Group (JTAG)
+--   Developed by:      Joint Test Action Group (JTAG)
+--   Standard/Manual:   IEEE Standard 1149.1-1990 - Standard Test Access Port and Boundary-Scan Architecture
+--   Further links:     https://en.wikipedia.org/wiki/JTAG
+--
 -- License:
 -- =============================================================================
 -- Copyright 2016-2020 Open Source VHDL Group
@@ -37,7 +42,7 @@ use     IEEE.std_logic_1164.all;
 -- TDI  -> Test Data In    
 -- TDO  -> Test Data Out   
 package JTAG is
-	type T_JTAG is record
+	type JTAG_Interface is record
 		TCK  : std_logic;
 		TRST : std_logic;
 		TMS  : std_logic;
@@ -45,13 +50,13 @@ package JTAG is
 		TDO  : std_logic;
 	end record;
 
-	view V_JTAG_In of T_JTAG is
+	view JTAG_ChipView of JTAG_Interface is
 		TCK  : in;
 		TRST : in;
 		TMS  : in;
 		TDI  : in;
 		TDO  : out;
 	end view;
-	alias V_JTAG_Out is V_JTAG_In'converse;
+	alias JTAG_TesterView is JTAG_ChipView'converse;
 
 end package;
