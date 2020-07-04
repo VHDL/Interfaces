@@ -2,12 +2,11 @@ library IEEE;
 use     IEEE.std_logic_1164.all;
 
 -- Signal name mappings
--- TCK  -> Test Clock     
--- TRST -> Test Reset     
--- TMS  -> Test Mode Select
--- TDI  -> Test Data In    
--- TDO  -> Test Data Out   
-package JTAG is
+-- SCLK -> Serial Clock     
+-- MOSI -> Master Out/Slave In
+-- MISO -> Master In/Slave Out
+-- SS_n -> Slave Select; low-active
+package SPI is
 	type T_SPI is record
 		SCLK : std_logic;
 		MOSI : std_logic;
