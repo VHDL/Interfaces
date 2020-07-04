@@ -52,7 +52,7 @@ package Common is
 		array(natural range <>)
 		of Differatial_Interface;
 
-	alias LVDS_Interface_Vector is T_DS_Vector;
+	alias LVDS_Interface_Vector is Differatial_Interface;
 
 
 	-- Transceiver lanes with differential signaling
