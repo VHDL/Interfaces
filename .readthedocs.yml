@@ -15,7 +15,7 @@ sphinx:
   builder: html
   configuration: doc/conf.py
 
-formats: []
+formats:
   - pdf
 #  - htmlzip
 #  - epub
