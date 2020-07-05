@@ -84,4 +84,56 @@ package AXI4_Lite is
 		ReadData       : AXI4Lite_ReadData_Interface;
 	end record;
 
+	-- All lower-level views are defined from the driver's point of view.
+	view AXI4Lite_Address_MasterView of AXI4Lite_Address_Interface is
+		-- Handshake signals
+		Valid     : out;
+		Ready     : in;
+		
+		-- Payload signals
+		Address   : out;
+		Protect   : out;
+	end view;
+	alias AXI4Lite_Address_SlaveView is AXI4Lite_Address_MasterView'converse;
+
+	view AXI4Lite_WriteData_MasterView of AXI4Lite_WriteData_Interface is
+		-- Handshake signals
+		Valid     : out;
+		Ready     : in;
+		
+		-- Payload signals
+		Data      : out;
+		Strobe    : out;
+	end view;
+	alias AXI4Lite_WriteData_SlaveView is AXI4Lite_WriteData_MasterView'converse;
+
+	view AXI4Lite_WriteResponse_MasterView of AXI4Lite_WriteResponse_Interface is
+		-- Handshake signals
+		Valid     : in;
+		Ready     : out;
+		
+		-- Payload signals
+		Response  : in;
+	end view;
+	alias AXI4Lite_WriteResponse_SlaveView is AXI4Lite_WriteResponse_MasterView'converse;
+
+	view AXI4Lite_ReadData_MasterView of AXI4Lite_ReadData_Interface is
+		-- Handshake signals
+		Valid     : in;
+		Ready     : out;
+		
+		-- Payload signals
+		Data      : in;
+		Response  : in;
+	end view;
+	alias AXI4Lite_ReadData_SlaveView is AXI4Lite_ReadData_MasterView'converse;
+
+	view AXI4Lite_MasterView of AXI4Lite_Interface is
+		WriteAddress   : view AXI4Lite_Address_MasterView;
+		WriteData      : view AXI4Lite_WriteData_MasterView;
+		WriteResponse  : view AXI4Lite_WriteResponse_MasterView;
+		ReadAddress    : view AXI4Lite_Address_MasterView;
+		ReadData       : view AXI4Lite_ReadData_MasterView;
+	end view;
+	alias AXI4Lite_SlaveView is AXI4Lite_MasterView'converse;
 end package;
