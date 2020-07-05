@@ -41,7 +41,7 @@ package DPHY is
 
 	view DPHY_OutView of DPHY_Interface is
 		Clock : view Differatial_OutView;
-		Data  : view Differatial_OutView;
+		Data  : view ( Differatial_OutView );
 	end view;
 	alias DPHY_InView is DPHY_OutView'converse;
 
