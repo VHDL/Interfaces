@@ -10,6 +10,13 @@
 -- -------------------------------------
 -- This package 
 --
+--   Interface name:    I2C (Inter-Integrated Circuit)
+--   Alternative names: Two-Wire-Interface (TWI)
+--   Can be reused for: PMBus, SMBus
+--   Developed by:      Philips / NXP Semiconductor
+--   Standard/Manual:   http://www.nxp.com/documents/user_manual/UM10204.pdf
+--   Further links:     https://en.wikipedia.org/wiki/I%C2%B2C
+--
 -- License:
 -- =============================================================================
 -- Copyright 2016-2020 Open Source VHDL Group
@@ -37,31 +44,33 @@ use     work.Common.all;
 -- SDA -> Serial Data
 package I2C is
 	-- Chip external interface (PCB level)
-	type T_I2C_PCB is record
+	type I2C_PCB_Interface is record
 		SCL : std_logic;
 		SDA : std_logic;
 	end record;
 
-	view V_I2C_PCB of T_I2C_PCB is
+	view I2C_PCB_View of I2C_PCB_Interface is
 		SCL : inout;
 		SDA : inout;
 	end view;
 
-	type T_I2C_PCB_Vector is array(natural range <>) of T_I2C_PCB;
+	type I2C_PCB_Interface_vector is
+		array(natural range <>)
+		of I2C_PCB_Interface;
 	
 
 	-- Chip internal interface, not supporting bidirectional signals (fabric level)
-	type T_I2C is record
-		SCL  : T_TriState;
-		SDA  : T_TriState;
+	type I2C_Interface is record
+		SCL  : Tristate_Interface;
+		SDA  : Tristate_Interface;
 	end record;
 
-	view V_I2C_Out of T_I2C is
-		SCL : view V_Tristate_Out;
-		SDA : view V_TriState_Out;
+	view I2C_ControllerView of I2C_Interface is
+		SCL : view Tristate_OutView;
+		SDA : view Tristate_OutView;
 	end view;
-	alias V_I2C_In is V_I2C_Out'converse;
+	alias I2C_IOBView is I2C_ControllerView'converse;
 
-	type T_I2C_Vector is array(natural range <>) of T_I2C;
+	type I2C_Interface_Vector is array(natural range <>) of I2C_Interface;
 
 end package;

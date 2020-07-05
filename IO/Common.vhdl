@@ -32,56 +32,62 @@ use     IEEE.std_logic_1164.all;
 
 package Common is
 	-- Differential signaling (DS or LVDS)
-	type T_DS is record
+	type Differatial_Interface is record
 		P : std_logic;
 		N : std_logic;
 	end record;
 
-	alias T_LVDS        is T_DS;
+	alias LVDS_Interface        is Differatial_Interface;
 
-	view V_DS_Out of T_DS is
+	view Differatial_OutView of Differatial_Interface is
 		P : out;
 		N : out;
 	end view;
-	alias V_DS_In is V_DS_Out'converse;
+	alias Differatial_InView is Differatial_OutView'converse;
 
-	alias V_LVDS_Out is V_DS_Out;
-	alias V_LVDS_In  is V_DS_In;
+	alias LVDS_OutView is Differatial_OutView;
+	alias LVDS_InView  is Differatial_InView;
 
-	type T_DS_Vector is array(natural range <>) of T_DS;
+	type Differatial_Interface_Vector is
+		array(natural range <>)
+		of Differatial_Interface;
 
-	alias T_LVDS_Vector is T_DS_Vector;
+	alias LVDS_Interface_Vector is Differatial_Interface;
 
 
 	-- Transceiver lanes with differential signaling
-	type T_DS_Lane is record
-		TX : T_DS;
-		RX : T_DS;
+	type DifferentialLane_Interface is record
+		TX : Differatial_Interface;
+		RX : Differatial_Interface;
 	end record;
 
-	view V_DS_Lane of T_DS_Lane is
-		TX : view V_DS_Out;
-		RX : view V_DS_In;
+	view DifferentialLane_TransmitterView of DifferentialLane_Interface is
+		TX : view Differatial_OutView;
+		RX : view Differatial_InView;
 	end view;
 
-	type T_DS_Lane_Vector is array(natural range <>) of T_DS_Lane;
+	type DifferentialLane_Interface_Vector is
+		array(natural range <>)
+		of DifferentialLane_Interface;
 
-	alias T_LVDS_Lane_Vector is T_DS_Lane_Vector;
+	alias LVDSLane_Interface_Vector is DifferentialLane_Interface_Vector;
 
 
 	-- Tristate (3-state) interface
-	type T_Tristate is record
+	type Tristate_Interface is record
 		I : std_logic;      -- Input
 		O : std_logic;      -- Output
 		T : std_logic;      -- Tristate / OutputEnable_n
 	end record;
 
-	view V_Tristate_Out of T_Tristate is
+	view Tristate_OutView of Tristate_Interface is
 		I : in;
 		O : out;
 		T : out;
 	end view;
-	alias V_Tristate_In is V_Tristate_Out'converse;
+	alias Tristate_InView is Tristate_OutView'converse;
 
-	type T_Tristate_Vector is array(natural range <>) of T_Tristate;
+	type Tristate_Interface_Vector is
+		array(natural range <>)
+		of Tristate_Interface;
 end package;

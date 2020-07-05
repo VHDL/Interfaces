@@ -36,20 +36,20 @@ use     IEEE.std_logic_1164.all;
 -- MISO -> Master In/Slave Out
 -- SS_n -> Slave Select; low-active
 package SPI is
-	type T_SPI is record
+	type SPI_Interface is record
 		SCLK : std_logic;
 		MOSI : std_logic;
 		MISO : std_logic;
 		SS_n : std_logic_vector;
 	end record;
 
-	view V_SPI_Out of T_SPI is
+	view SPI_MasterView of SPI_Interface is
 		SCLK  : out;
 		MOSI  : out;
 		MISO  : in;
 		SS_n  : out;
 	end view;
-	alias V_SPI_In is V_SPI_Out'converse;
+	alias SPI_SlaveView is SPI_MasterView'converse;
 
-	type T_SPI_Vector is array(natural range <>) of T_SPI;
+	type SPI_Interface_Vector is array(natural range <>) of SPI_Interface;
 end package;
