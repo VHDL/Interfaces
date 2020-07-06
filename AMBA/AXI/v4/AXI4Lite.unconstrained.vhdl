@@ -36,7 +36,6 @@ use     work.Axi4Common.all;
 
 
 package Axi4Lite is
-	-- AXI4-Lite address stream
 	type Axi4Lite_Address_Interface is record
 		-- Handshake signals
 		Valid     : std_ulogic;
@@ -44,6 +43,7 @@ package Axi4Lite is
 		
 		-- Payload signals
 		Address   : Address_Type;
+		Cache     : Cache_Type;
 		Protect   : Protect_Type;
 	end record;
 
@@ -92,6 +92,7 @@ package Axi4Lite is
 		
 		-- Payload signals
 		Address   : out;
+		Cache     : out;
 		Protect   : out;
 	end view;
 	alias Axi4Lite_Address_SlaveView is Axi4Lite_Address_MasterView'converse;
