@@ -4,7 +4,7 @@
 -- =============================================================================
 -- Authors:         Patrick Lehmann
 --
--- Package:         VHDL-2019 Common types in AXI4 interface descriptions
+-- Generic Package: Generic AXI4-Lite interface descriptions for pre-constraining
 --
 -- Description:
 -- -------------------------------------
@@ -27,32 +27,42 @@
 -- limitations under the License.
 -- =============================================================================
 
-library IEEE;
-use     IEEE.std_logic_1164.all;
-use     IEEE.numeric_std.all;
+use work.Axi4Lite.all;
 
 
-package AXI4_Common is
-	-- Common to all AXI buses
-	subtype AXI_Data_Type     is std_ulogic_vector;
+package Axi4Lite_Generic is
+	generic (
+		constant ADDRESS_BITS : positive;
+		constant DATA_BITS    : positive;
+		constant STROBE_BITS  : positive := DATA_BITS / 8
+	);
 	
-	-- Unique to AXI-Stream
+	subtype Axi4Lite_Address_SizedInterface is Axi4Lite_Address_Interface(
+		Address(ADDRESS_BITS - 1 downto 0)
+	);
 	
-	-- Unique to AXI-Lite
-	subtype AXI_Address_Type  is unresolved_unsigned;
-	subtype AXI_Strobe_Type   is std_ulogic_vector;
-	subtype AXI_Keep_Type     is std_ulogic_vector;
-	
-	-- Unique to AXI
-	subtype AXI_ID_Type       is unresolved_unsigned;
-	subtype AXI_Region_Type   is unresolved_unsigned;
-	
-	-- Fixed sized types
-	subtype AXI_Protect_Type  is std_ulogic_vector(2 downto 0);
-	subtype AXI_Response_Type is std_ulogic_vector(1 downto 0);
-	
-	type AXI_System_Interface is record
-		Clock    : std_ulogic;
-		Reset_n  : std_ulogic;
-	end record;
+	subtype Axi4Lite_WriteData_SizedInterface is Axi4Lite_WriteData_Interface(
+		Data(DATA_BITS - 1 downto 0),
+		Strobe(STROBE_BITS - 1 downto 0)
+	);
+
+	subtype Axi4Lite_ReadData_SizedInterface is Axi4Lite_ReadData_Interface(
+		Data(DATA_BITS - 1 downto 0)
+	);
+
+	subtype Axi4Lite_SizedInterface is Axi4Lite_Interface(
+		WriteAddress(
+			Address(ADDRESS_BITS - 1 downto 0)
+		),
+		WriteData(
+			Data(DATA_BITS - 1 downto 0),
+			Strobe(STROBE_BITS - 1 downto 0)
+		),
+		ReadAddress(
+			Address(ADDRESS_BITS - 1 downto 0)
+		),
+		ReadData(
+			Data(DATA_BITS - 1 downto 0)
+		)
+	);
 end package;

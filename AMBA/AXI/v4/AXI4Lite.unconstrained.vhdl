@@ -32,60 +32,60 @@ library IEEE;
 use     IEEE.std_logic_1164.all;
 use     IEEE.numeric_std.all;
 
-use     work.AXI4_Common.all;
+use     work.Axi4Common.all;
 
 
-package AXI4_Lite is
+package Axi4Lite is
 	-- AXI4-Lite address stream
-	type AXI4Lite_Address_Interface is record
+	type Axi4Lite_Address_Interface is record
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
 		
 		-- Payload signals
-		Address   : AXI_Address_Type;
-		Protect   : AXI_Protect_Type;
+		Address   : Address_Type;
+		Protect   : Protect_Type;
 	end record;
 
-	type AXI4Lite_WriteData_Interface is record
+	type Axi4Lite_WriteData_Interface is record
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
 		
 		-- Payload signals
-		Data      : AXI_Data_Type;
-		Strobe    : AXI_Strobe_Type;
+		Data      : Data_Type;
+		Strobe    : Strobe_Type;
 	end record;
 
-	type AXI4Lite_WriteResponse_Interface is record
+	type Axi4Lite_WriteResponse_Interface is record
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
 		
 		-- Payload signals
-		Response  : AXI_Response_Type;
+		Response  : Response_Type;
 	end record;
 
-	type AXI4Lite_ReadData_Interface is record
+	type Axi4Lite_ReadData_Interface is record
 		-- Handshake signals
 		Valid   : std_ulogic;
 		Ready   : std_ulogic;
 		
 		-- Payload signals
-		Data      : AXI_Data_Type;
-		Response  : AXI_Response_Type;
+		Data      : Data_Type;
+		Response  : Response_Type;
 	end record;
 
-	type AXI4Lite_Interface is record
-		WriteAddress   : AXI4Lite_Address_Interface;
-		WriteData      : AXI4Lite_WriteData_Interface;
-		WriteResponse  : AXI4Lite_WriteResponse_Interface;
-		ReadAddress    : AXI4Lite_Address_Interface;
-		ReadData       : AXI4Lite_ReadData_Interface;
+	type Axi4Lite_Interface is record
+		WriteAddress   : Axi4Lite_Address_Interface;
+		WriteData      : Axi4Lite_WriteData_Interface;
+		WriteResponse  : Axi4Lite_WriteResponse_Interface;
+		ReadAddress    : Axi4Lite_Address_Interface;
+		ReadData       : Axi4Lite_ReadData_Interface;
 	end record;
 
 	-- All lower-level views are defined from the driver's point of view.
-	view AXI4Lite_Address_MasterView of AXI4Lite_Address_Interface is
+	view Axi4Lite_Address_MasterView of Axi4Lite_Address_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -94,9 +94,9 @@ package AXI4_Lite is
 		Address   : out;
 		Protect   : out;
 	end view;
-	alias AXI4Lite_Address_SlaveView is AXI4Lite_Address_MasterView'converse;
+	alias Axi4Lite_Address_SlaveView is Axi4Lite_Address_MasterView'converse;
 
-	view AXI4Lite_WriteData_MasterView of AXI4Lite_WriteData_Interface is
+	view Axi4Lite_WriteData_MasterView of Axi4Lite_WriteData_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -105,9 +105,9 @@ package AXI4_Lite is
 		Data      : out;
 		Strobe    : out;
 	end view;
-	alias AXI4Lite_WriteData_SlaveView is AXI4Lite_WriteData_MasterView'converse;
+	alias Axi4Lite_WriteData_SlaveView is Axi4Lite_WriteData_MasterView'converse;
 
-	view AXI4Lite_WriteResponse_MasterView of AXI4Lite_WriteResponse_Interface is
+	view Axi4Lite_WriteResponse_MasterView of Axi4Lite_WriteResponse_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -115,9 +115,9 @@ package AXI4_Lite is
 		-- Payload signals
 		Response  : in;
 	end view;
-	alias AXI4Lite_WriteResponse_SlaveView is AXI4Lite_WriteResponse_MasterView'converse;
+	alias Axi4Lite_WriteResponse_SlaveView is Axi4Lite_WriteResponse_MasterView'converse;
 
-	view AXI4Lite_ReadData_MasterView of AXI4Lite_ReadData_Interface is
+	view Axi4Lite_ReadData_MasterView of Axi4Lite_ReadData_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -126,14 +126,14 @@ package AXI4_Lite is
 		Data      : in;
 		Response  : in;
 	end view;
-	alias AXI4Lite_ReadData_SlaveView is AXI4Lite_ReadData_MasterView'converse;
+	alias Axi4Lite_ReadData_SlaveView is Axi4Lite_ReadData_MasterView'converse;
 
-	view AXI4Lite_MasterView of AXI4Lite_Interface is
-		WriteAddress   : view AXI4Lite_Address_MasterView;
-		WriteData      : view AXI4Lite_WriteData_MasterView;
-		WriteResponse  : view AXI4Lite_WriteResponse_MasterView;
-		ReadAddress    : view AXI4Lite_Address_MasterView;
-		ReadData       : view AXI4Lite_ReadData_MasterView;
+	view Axi4Lite_MasterView of Axi4Lite_Interface is
+		WriteAddress   : view Axi4Lite_Address_MasterView;
+		WriteData      : view Axi4Lite_WriteData_MasterView;
+		WriteResponse  : view Axi4Lite_WriteResponse_MasterView;
+		ReadAddress    : view Axi4Lite_Address_MasterView;
+		ReadData       : view Axi4Lite_ReadData_MasterView;
 	end view;
-	alias AXI4Lite_SlaveView is AXI4Lite_MasterView'converse;
+	alias Axi4Lite_SlaveView is Axi4Lite_MasterView'converse;
 end package;

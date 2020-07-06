@@ -27,44 +27,44 @@
 -- limitations under the License.
 -- =============================================================================
 
-package AXI4_A32_D8 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D8 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 8
 	);
 
-package AXI4_A32_D16 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D16 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 16
 	);
 
-package AXI4_A32_D32 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D32 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 32
 	);
 
--- alias AXI4_32 is AXI4_A32_D32;
-package AXI4_32 is new work.AXI4_Lite_generic
+-- alias Axi4_32 is Axi4Lite_A32_D32;
+package Axi4Lite_32 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 32
 	);
 
-package AXI4_A32_D64 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D64 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 64
 	);
 
-package AXI4_A32_D128 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D128 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 128
 	);
 
-package AXI4_A32_D256 is new work.AXI4_Lite_generic
+package Axi4Lite_A32_D256 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 256
@@ -73,44 +73,44 @@ package AXI4_A32_D256 is new work.AXI4_Lite_generic
 
 
 
-package AXI4_A64_D8 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D8 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 8
 	);
 
-package AXI4_A64_D16 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D16 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 16
 	);
 
-package AXI4_A64_D32 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D32 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 32
 	);
 
-package AXI4_A64_D64 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D64 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 64
 	);
 
--- alias AXI4_64 is AXI4_A64_D64;
-package AXI4_64 is new work.AXI4_Lite_generic
+-- alias Axi4_64 is Axi4Lite_A64_D64;
+package Axi4Lite_64 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 64
 	);
 
-package AXI4_A64_D128 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D128 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 128
 	);
 
-package AXI4_A64_D256 is new work.AXI4_Lite_generic
+package Axi4Lite_A64_D256 is new work.Axi4Lite_Generic
 	generic map (
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 256

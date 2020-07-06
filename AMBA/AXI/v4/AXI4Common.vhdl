@@ -4,7 +4,7 @@
 -- =============================================================================
 -- Authors:         Patrick Lehmann
 --
--- Generic Package: Generic AXI4-Lite interface descriptions for pre-constraining
+-- Package:         VHDL-2019 Common types in AXI4 interface descriptions
 --
 -- Description:
 -- -------------------------------------
@@ -27,42 +27,32 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AXI4_Lite.all;
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
 
 
-package AXI4_Lite_generic is
-	generic (
-		constant ADDRESS_BITS : positive;
-		constant DATA_BITS    : positive;
-		constant STROBE_BITS  : positive := DATA_BITS / 8
-	);
+package Axi4Common is
+	-- Common to all AXI buses
+	subtype Data_Type     is std_ulogic_vector;
 	
-	subtype AXI4Lite_Address_SizedInterface is AXI4Lite_Address_Interface(
-		Address(ADDRESS_BITS - 1 downto 0)
-	);
+	-- Unique to AXI-Stream
 	
-	subtype AXI4Lite_WriteData_SizedInterface is AXI4Lite_WriteData_Interface(
-		Data(DATA_BITS - 1 downto 0),
-		Strobe(STROBE_BITS - 1 downto 0)
-	);
-
-	subtype AXI4Lite_ReadData_SizedInterface is AXI4Lite_ReadData_Interface(
-		Data(DATA_BITS - 1 downto 0)
-	);
-
-	subtype AXI4Lite_SizedInterface is AXI4Lite_Interface(
-		WriteAddress(
-			Address(ADDRESS_BITS - 1 downto 0)
-		),
-		WriteData(
-			Data(DATA_BITS - 1 downto 0),
-			Strobe(STROBE_BITS - 1 downto 0)
-		),
-		ReadAddress(
-			Address(ADDRESS_BITS - 1 downto 0)
-		),
-		ReadData(
-			Data(DATA_BITS - 1 downto 0)
-		)
-	);
+	-- Unique to AXI-Lite
+	subtype Address_Type  is unresolved_unsigned;
+	subtype Strobe_Type   is std_ulogic_vector;
+	subtype Keep_Type     is std_ulogic_vector;
+	
+	-- Unique to AXI
+	subtype ID_Type       is unresolved_unsigned;
+	subtype Region_Type   is unresolved_unsigned;
+	
+	-- Fixed sized types
+	subtype Protect_Type  is std_ulogic_vector(2 downto 0);
+	subtype Response_Type is std_ulogic_vector(1 downto 0);
+	
+	type AXI4_System_Interface is record
+		Clock    : std_ulogic;
+		Reset_n  : std_ulogic;
+	end record;
 end package;
