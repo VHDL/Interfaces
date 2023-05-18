@@ -29,9 +29,9 @@
 
 package CSE is
 	generic (
-		type T_Command; -- is (<>); -> Not yet supported by Riviera-PRO 2020.04
-		type T_Status;  -- is (<>); -> Not yet supported by Riviera-PRO 2020.04
-		type T_Error    -- is (<>)  -> Not yet supported by Riviera-PRO 2020.04
+		type T_Command is (<>); --> Not yet supported by Riviera-PRO 2020.04
+		type T_Status  is (<>); --> Not yet supported by Riviera-PRO 2020.04
+		type T_Error   is (<>)  --> Not yet supported by Riviera-PRO 2020.04
 	);
 
 	type T_CSE is record

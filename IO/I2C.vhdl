@@ -57,7 +57,6 @@ package I2C is
 	type I2C_PCB_Interface_vector is
 		array(natural range <>)
 		of I2C_PCB_Interface;
-	
 
 	-- Chip internal interface, not supporting bidirectional signals (fabric level)
 	type I2C_Interface is record
