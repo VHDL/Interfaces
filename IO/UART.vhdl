@@ -39,11 +39,11 @@ package UART is
 		TX : std_logic;
 	end record;
 
-	view UART_SenderView of UART_Interface is
+	view UART_TransmitterView of UART_Interface is
 		TX  : out;
 		RX  : in;
 	end view;
-	alias UART_ReceiverView is UART_SenderView'converse;
+	alias UART_ReceiverView is UART_TransmitterView'converse;
 
 	type UART_Interface_Vector is array(natural range <>) of UART_Interface;
 end package;
