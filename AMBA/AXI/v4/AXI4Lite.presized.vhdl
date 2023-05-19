@@ -1,18 +1,16 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Patrick Lehmann
+-- Authors:
+--   Patrick Lehmann
 --
--- Packages:        Package instances for AXI4-Lite with predefined sizes
+-- Package:
+--   Package instances for AXI4-Lite with predefined sizes
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -115,4 +113,3 @@ package Axi4Lite_A64_D256 is new work.Axi4Lite_Generic
 		ADDRESS_BITS => 64,
 		DATA_BITS    => 256
 	);
-	

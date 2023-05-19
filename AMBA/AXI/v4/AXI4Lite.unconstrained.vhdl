@@ -1,19 +1,17 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Rob Gaddi
---                  Patrick Lehmann
+-- Authors:
+--   Rob Gaddi
+--   Patrick Lehmann
 --
--- Package:         VHDL-2019 AXI4-Lite interface descriptions
+-- Package:
+--   VHDL-2019 AXI4-Lite interface descriptions
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -40,7 +38,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
 		Address   : Address_Type;
 		Cache     : Cache_Type;
@@ -51,7 +49,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
 		Data      : Data_Type;
 		Strobe    : Strobe_Type;
@@ -61,7 +59,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
 		Response  : Response_Type;
 	end record;
@@ -70,7 +68,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid   : std_ulogic;
 		Ready   : std_ulogic;
-		
+
 		-- Payload signals
 		Data      : Data_Type;
 		Response  : Response_Type;
@@ -89,7 +87,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
-		
+
 		-- Payload signals
 		Address   : out;
 		Cache     : out;
@@ -101,7 +99,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
-		
+
 		-- Payload signals
 		Data      : out;
 		Strobe    : out;
@@ -112,7 +110,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
-		
+
 		-- Payload signals
 		Response  : in;
 	end view;
@@ -122,7 +120,7 @@ package Axi4Lite is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
-		
+
 		-- Payload signals
 		Data      : in;
 		Response  : in;

@@ -1,18 +1,16 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Patrick Lehmann
+-- Authors:
+--   Patrick Lehmann
 --
--- Package:         VHDL-2019 Common types in AXI4 interface descriptions
+-- Package:
+--   VHDL-2019 Common types in AXI4 interface descriptions
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -36,23 +34,25 @@ package Axi4Common is
 	-- Common to all AXI buses
 	subtype Data_Type     is std_ulogic_vector;
 	subtype User_Type     is std_ulogic_vector;
-	
+
 	-- Unique to AXI-Stream
 	subtype Keep_Type     is std_ulogic_vector;
-	
+
 	-- Unique to AXI-Lite
 	subtype Address_Type  is unresolved_unsigned;
 	subtype Strobe_Type   is std_ulogic_vector;
 
 
 	-- Unique to AXI
-	subtype ID_Type               is unresolved_unsigned;
+	subtype ID_Type               is unsigned;
+	subtype Length_Type           is unsigned(3 downto 0);
+	subtype Lock_Type             is std_ulogic_vector(3 downto 0);
 	subtype Region_Type           is std_ulogic_vector(3 downto 0);
   subtype Cache_Type            is std_ulogic_vector(3 downto 0);
   subtype QualityOfService_Type is std_ulogic_vector(3 downto 0);
 
 
-  subtype  Size_Type is unresolved_unsigned(2 downto 0);
+  subtype  Size_Type is unsigned(2 downto 0);
   constant AXI4_SIZE_1          : Size_Type := "000";
   constant AXI4_SIZE_2          : Size_Type := "001";
   constant AXI4_SIZE_4          : Size_Type := "010";
@@ -62,7 +62,7 @@ package Axi4Common is
   constant AXI4_SIZE_64         : Size_Type := "110";
   constant AXI4_SIZE_128        : Size_Type := "111";
 
-  
+
   subtype  Burst_Type is std_ulogic_vector(1 downto 0);
   constant AXI4_BURST_FIXED     : Burst_Type := "00";
   constant AXI4_BURST_INCR      : Burst_Type := "01";
@@ -80,9 +80,9 @@ package Axi4Common is
   -- Bit 0: 0 Unprivileged access   1 Privileged access
   -- Bit 1: 0 Secure access         1 Non-secure access
   -- Bit 2: 0 Data access           1 Instruction access
-  constant AXI4_PROTECT_INIT          : Protect_Type := "UUU"; 
-  constant AXI4_PROTECT_NONE          : Protect_Type := "000"; 	
-	
+  constant AXI4_PROTECT_INIT          : Protect_Type := "UUU";
+  constant AXI4_PROTECT_NONE          : Protect_Type := "000";
+
 
 	type AXI4_System_Interface is record
 		Clock    : std_ulogic;

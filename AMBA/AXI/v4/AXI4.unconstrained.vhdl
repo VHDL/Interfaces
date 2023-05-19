@@ -1,19 +1,17 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Rob Gaddi
---                  Patrick Lehmann
+-- Authors:
+--   Rob Gaddi
+--   Patrick Lehmann
 --
--- Package:         VHDL-2019 AXI4 interface descriptions
+-- Package:
+--   VHDL-2019 AXI4 interface descriptions
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -40,9 +38,9 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
-		ID        : 
+		ID        : ID_Type;
 		Address   : Address_Type;
 		Len       : Length_Type;
 		Size      : Size_Type;
@@ -60,7 +58,7 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
 		Data      : Data_Type;
 		Strobe    : Strobe_Type;
@@ -73,9 +71,9 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : std_ulogic;
 		Ready     : std_ulogic;
-		
+
 		-- Payload signals
-		ID        : 
+		ID        : ID_Type;
 		Response  : Response_Type;
 
 		User      : User_Type;
@@ -85,9 +83,9 @@ package Axi4 is
 		-- Handshake signals
 		Valid   : std_ulogic;
 		Ready   : std_ulogic;
-		
+
 		-- Payload signals
-		ID        : 
+		ID        : ID_Type;
 		Response  : Response_Type;
 
 		Data      : Data_Type;
@@ -109,11 +107,19 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
-		
+
 		-- Payload signals
+		ID        : out;
 		Address   : out;
+		Len       : out;
+		Size      : out;
+		Burst     : out;
+		Lock      : out;
+		QoS       : out;
+		Region    : out;
 		Cache     : out;
 		Protect   : out;
+		User      : out;
 	end view;
 	alias Axi4_Address_SlaveView is Axi4_Address_MasterView'converse;
 
@@ -121,10 +127,12 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
-		
+
 		-- Payload signals
 		Data      : out;
 		Strobe    : out;
+		Last      : out;
+		User      : out;
 	end view;
 	alias Axi4_WriteData_SlaveView is Axi4_WriteData_MasterView'converse;
 
@@ -132,9 +140,11 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
-		
+
 		-- Payload signals
+		ID        : in;
 		Response  : in;
+		User      : in;
 	end view;
 	alias Axi4_WriteResponse_SlaveView is Axi4_WriteResponse_MasterView'converse;
 
@@ -142,10 +152,13 @@ package Axi4 is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
-		
+
 		-- Payload signals
-		Data      : in;
+		ID        : in;
 		Response  : in;
+		Data      : in;
+		Last      : in;
+		User      : in;
 	end view;
 	alias Axi4_ReadData_SlaveView is Axi4_ReadData_MasterView'converse;
 
@@ -157,4 +170,5 @@ package Axi4 is
 		ReadData       : view Axi4_ReadData_MasterView;
 	end view;
 	alias Axi4_SlaveView is Axi4_MasterView'converse;
+
 end package;

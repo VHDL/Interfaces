@@ -1,21 +1,19 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Patrick Lehmann
+-- Authors:
+--   Patrick Lehmann
 --
--- Package:         VHDL-2019 I²S interface descriptions
+-- Package:
+--   VHDL-2019 I²S interface descriptions
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 --   Designer: NXP (Philips)
 --   Wikipedia: https://en.wikipedia.org/wiki/I%C2%B2S
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.

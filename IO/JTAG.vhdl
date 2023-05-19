@@ -1,14 +1,12 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Patrick Lehmann
+-- Authors:
+--   Patrick Lehmann
 --
--- Package:         VHDL-2019 JTAG interface descriptions
+-- Package:
+--   VHDL-2019 JTAG interface descriptions
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 --   Interface name:    Joint Test Action Group (JTAG)
 --   Developed by:      Joint Test Action Group (JTAG)
@@ -17,7 +15,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -36,11 +34,11 @@ library IEEE;
 use     IEEE.std_logic_1164.all;
 
 -- Signal name mappings
--- TCK  -> Test Clock     
--- TRST -> Test Reset     
+-- TCK  -> Test Clock
+-- TRST -> Test Reset
 -- TMS  -> Test Mode Select
--- TDI  -> Test Data In    
--- TDO  -> Test Data Out   
+-- TDI  -> Test Data In
+-- TDO  -> Test Data Out
 package JTAG is
 	type JTAG_Interface is record
 		TCK  : std_logic;

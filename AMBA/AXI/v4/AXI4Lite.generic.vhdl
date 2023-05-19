@@ -1,18 +1,16 @@
--- EMACS settings: -*-	tab-width: 2; indent-tabs-mode: t -*-
--- vim: tabstop=2:shiftwidth=2:noexpandtab
--- kate: tab-width 2; replace-tabs off; indent-width 2;
 -- =============================================================================
--- Authors:         Patrick Lehmann
+-- Authors:
+--   Patrick Lehmann
 --
--- Generic Package: Generic AXI4-Lite interface descriptions for pre-constraining
+-- Package:
+--   Generic AXI4-Lite interface descriptions for pre-constraining
 --
 -- Description:
--- -------------------------------------
--- This package 
+--   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2020 Open Source VHDL Group
+-- Copyright 2016-2023 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -36,11 +34,11 @@ package Axi4Lite_Generic is
 		constant DATA_BITS    : positive;
 		constant STROBE_BITS  : positive := DATA_BITS / 8
 	);
-	
+
 	subtype Axi4Lite_Address_SizedInterface is Axi4Lite_Address_Interface(
 		Address(ADDRESS_BITS - 1 downto 0)
 	);
-	
+
 	subtype Axi4Lite_WriteData_SizedInterface is Axi4Lite_WriteData_Interface(
 		Data(DATA_BITS - 1 downto 0),
 		Strobe(STROBE_BITS - 1 downto 0)
