@@ -39,7 +39,7 @@ package Axi4Common is
 	subtype Keep_Type     is std_ulogic_vector;
 
 	-- Unique to AXI-Lite
-	subtype Address_Type  is unresolved_unsigned;
+	subtype Address_Type  is unsigned;  -- unresolved_unsigned;
 	subtype Strobe_Type   is std_ulogic_vector;
 
 
