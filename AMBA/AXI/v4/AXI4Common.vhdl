@@ -44,12 +44,12 @@ package Axi4Common is
 
 
 	-- Unique to AXI
-	subtype ID_Type               is unsigned;
-	subtype Length_Type           is unsigned(3 downto 0);
-	subtype Lock_Type             is std_ulogic_vector(3 downto 0);
-	subtype Region_Type           is std_ulogic_vector(3 downto 0);
-  subtype Cache_Type            is std_ulogic_vector(3 downto 0);
-  subtype QualityOfService_Type is std_ulogic_vector(3 downto 0);
+	subtype ID_Type     is unsigned;
+	subtype Length_Type is unsigned(7 downto 0);
+	subtype Lock_Type   is std_ulogic_vector(3 downto 0);
+	subtype Region_Type is std_ulogic_vector(3 downto 0);
+  subtype Cache_Type  is std_ulogic_vector(3 downto 0);
+  subtype QoS_Type    is std_ulogic_vector(3 downto 0);
 
 
   subtype  Size_Type is unsigned(2 downto 0);

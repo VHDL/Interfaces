@@ -44,6 +44,7 @@ package Axi4Lite is
 		Cache     : Cache_Type;
 		Protect   : Protect_Type;
 	end record;
+	type Axi4Lite_Address_Interface_Vector is array(natural range <>) of Axi4Lite_Address_Interface;
 
 	type Axi4Lite_WriteData_Interface is record
 		-- Handshake signals
@@ -54,6 +55,7 @@ package Axi4Lite is
 		Data      : Data_Type;
 		Strobe    : Strobe_Type;
 	end record;
+	type Axi4Lite_WriteData_Interface_Vector is array(natural range <>) of Axi4Lite_WriteData_Interface;
 
 	type Axi4Lite_WriteResponse_Interface is record
 		-- Handshake signals
@@ -63,6 +65,7 @@ package Axi4Lite is
 		-- Payload signals
 		Response  : Response_Type;
 	end record;
+	type Axi4Lite_WriteResponse_Interface_Vector is array(natural range <>) of Axi4Lite_WriteResponse_Interface;
 
 	type Axi4Lite_ReadData_Interface is record
 		-- Handshake signals
@@ -73,6 +76,7 @@ package Axi4Lite is
 		Data      : Data_Type;
 		Response  : Response_Type;
 	end record;
+	type Axi4Lite_ReadData_Interface_Vector is array(natural range <>) of Axi4Lite_ReadData_Interface;
 
 	type Axi4Lite_Interface is record
 		WriteAddress   : Axi4Lite_Address_Interface;
@@ -81,9 +85,10 @@ package Axi4Lite is
 		ReadAddress    : Axi4Lite_Address_Interface;
 		ReadData       : Axi4Lite_ReadData_Interface;
 	end record;
+	type Axi4Lite_Interface_Vector is array(natural range <>) of Axi4Lite_Interface;
 
 	-- All lower-level views are defined from the driver's point of view.
-	view Axi4Lite_Address_MasterView of Axi4Lite_Address_Interface is
+	view Axi4Lite_Address_ManagerView of Axi4Lite_Address_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -93,9 +98,9 @@ package Axi4Lite is
 		Cache     : out;
 		Protect   : out;
 	end view;
-	alias Axi4Lite_Address_SlaveView is Axi4Lite_Address_MasterView'converse;
+	alias Axi4Lite_Address_SubordinateView is Axi4Lite_Address_ManagerView'converse;
 
-	view Axi4Lite_WriteData_MasterView of Axi4Lite_WriteData_Interface is
+	view Axi4Lite_WriteData_ManagerView of Axi4Lite_WriteData_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -104,9 +109,9 @@ package Axi4Lite is
 		Data      : out;
 		Strobe    : out;
 	end view;
-	alias Axi4Lite_WriteData_SlaveView is Axi4Lite_WriteData_MasterView'converse;
+	alias Axi4Lite_WriteData_SubordinateView is Axi4Lite_WriteData_ManagerView'converse;
 
-	view Axi4Lite_WriteResponse_MasterView of Axi4Lite_WriteResponse_Interface is
+	view Axi4Lite_WriteResponse_ManagerView of Axi4Lite_WriteResponse_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -114,9 +119,9 @@ package Axi4Lite is
 		-- Payload signals
 		Response  : in;
 	end view;
-	alias Axi4Lite_WriteResponse_SlaveView is Axi4Lite_WriteResponse_MasterView'converse;
+	alias Axi4Lite_WriteResponse_SubordinateView is Axi4Lite_WriteResponse_ManagerView'converse;
 
-	view Axi4Lite_ReadData_MasterView of Axi4Lite_ReadData_Interface is
+	view Axi4Lite_ReadData_ManagerView of Axi4Lite_ReadData_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -125,14 +130,14 @@ package Axi4Lite is
 		Data      : in;
 		Response  : in;
 	end view;
-	alias Axi4Lite_ReadData_SlaveView is Axi4Lite_ReadData_MasterView'converse;
+	alias Axi4Lite_ReadData_SubordinateView is Axi4Lite_ReadData_ManagerView'converse;
 
-	view Axi4Lite_MasterView of Axi4Lite_Interface is
-		WriteAddress   : view Axi4Lite_Address_MasterView;
-		WriteData      : view Axi4Lite_WriteData_MasterView;
-		WriteResponse  : view Axi4Lite_WriteResponse_MasterView;
-		ReadAddress    : view Axi4Lite_Address_MasterView;
-		ReadData       : view Axi4Lite_ReadData_MasterView;
+	view Axi4Lite_ManagerView of Axi4Lite_Interface is
+		WriteAddress   : view Axi4Lite_Address_ManagerView;
+		WriteData      : view Axi4Lite_WriteData_ManagerView;
+		WriteResponse  : view Axi4Lite_WriteResponse_ManagerView;
+		ReadAddress    : view Axi4Lite_Address_ManagerView;
+		ReadData       : view Axi4Lite_ReadData_ManagerView;
 	end view;
-	alias Axi4Lite_SlaveView is Axi4Lite_MasterView'converse;
+	alias Axi4Lite_SubordinateView is Axi4Lite_ManagerView'converse;
 end package;

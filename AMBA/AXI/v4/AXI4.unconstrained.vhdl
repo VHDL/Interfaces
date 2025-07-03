@@ -42,17 +42,19 @@ package Axi4 is
 		-- Payload signals
 		ID        : ID_Type;
 		Address   : Address_Type;
-		Len       : Length_Type;
+		Length    : Length_Type;
 		Size      : Size_Type;
 		Burst     : Burst_Type;
 		Lock      : Lock_Type;
-		QoS       : QualityOfService_Type;
+		QoS       : QoS_Type;
 		Region    : Region_Type;
 		Cache     : Cache_Type;
 		Protect   : Protect_Type;
 
 		User      : User_Type;
 	end record;
+	type Axi4_Address_Interface_Vector is array(natural range <>) of Axi4_Address_Interface;
+	
 
 	type Axi4_WriteData_Interface is record
 		-- Handshake signals
@@ -66,6 +68,7 @@ package Axi4 is
 
 		User      : User_Type;
 	end record;
+	type Axi4_WriteData_Interface_Vector is array(natural range <>) of Axi4_WriteData_Interface;
 
 	type Axi4_WriteResponse_Interface is record
 		-- Handshake signals
@@ -78,6 +81,7 @@ package Axi4 is
 
 		User      : User_Type;
 	end record;
+	type Axi4_WriteResponse_Interface_Vector is array(natural range <>) of Axi4_WriteResponse_Interface;
 
 	type Axi4_ReadData_Interface is record
 		-- Handshake signals
@@ -93,6 +97,7 @@ package Axi4 is
 
 		User      : User_Type;
 	end record;
+	type Axi4_ReadData_Interface_Vector is array(natural range <>) of Axi4_ReadData_Interface;
 
 	type Axi4_Interface is record
 		WriteAddress   : Axi4_Address_Interface;
@@ -101,9 +106,10 @@ package Axi4 is
 		ReadAddress    : Axi4_Address_Interface;
 		ReadData       : Axi4_ReadData_Interface;
 	end record;
+	type Axi4_Interface_Vector is array(natural range <>) of Axi4_Interface;
 
 	-- All lower-level views are defined from the driver's point of view.
-	view Axi4_Address_MasterView of Axi4_Address_Interface is
+	view Axi4_Address_ManagerView of Axi4_Address_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -111,7 +117,7 @@ package Axi4 is
 		-- Payload signals
 		ID        : out;
 		Address   : out;
-		Len       : out;
+		Length    : out;
 		Size      : out;
 		Burst     : out;
 		Lock      : out;
@@ -121,9 +127,9 @@ package Axi4 is
 		Protect   : out;
 		User      : out;
 	end view;
-	alias Axi4_Address_SlaveView is Axi4_Address_MasterView'converse;
+	alias Axi4_Address_SubordinateView is Axi4_Address_ManagerView'converse;
 
-	view Axi4_WriteData_MasterView of Axi4_WriteData_Interface is
+	view Axi4_WriteData_ManagerView of Axi4_WriteData_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -134,9 +140,9 @@ package Axi4 is
 		Last      : out;
 		User      : out;
 	end view;
-	alias Axi4_WriteData_SlaveView is Axi4_WriteData_MasterView'converse;
+	alias Axi4_WriteData_SubordinateView is Axi4_WriteData_ManagerView'converse;
 
-	view Axi4_WriteResponse_MasterView of Axi4_WriteResponse_Interface is
+	view Axi4_WriteResponse_ManagerView of Axi4_WriteResponse_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -146,9 +152,9 @@ package Axi4 is
 		Response  : in;
 		User      : in;
 	end view;
-	alias Axi4_WriteResponse_SlaveView is Axi4_WriteResponse_MasterView'converse;
+	alias Axi4_WriteResponse_SubordinateView is Axi4_WriteResponse_ManagerView'converse;
 
-	view Axi4_ReadData_MasterView of Axi4_ReadData_Interface is
+	view Axi4_ReadData_ManagerView of Axi4_ReadData_Interface is
 		-- Handshake signals
 		Valid     : in;
 		Ready     : out;
@@ -160,15 +166,15 @@ package Axi4 is
 		Last      : in;
 		User      : in;
 	end view;
-	alias Axi4_ReadData_SlaveView is Axi4_ReadData_MasterView'converse;
+	alias Axi4_ReadData_SubordinateView is Axi4_ReadData_ManagerView'converse;
 
-	view Axi4_MasterView of Axi4_Interface is
-		WriteAddress   : view Axi4_Address_MasterView;
-		WriteData      : view Axi4_WriteData_MasterView;
-		WriteResponse  : view Axi4_WriteResponse_MasterView;
-		ReadAddress    : view Axi4_Address_MasterView;
-		ReadData       : view Axi4_ReadData_MasterView;
+	view Axi4_ManagerView of Axi4_Interface is
+		WriteAddress   : view Axi4_Address_ManagerView;
+		WriteData      : view Axi4_WriteData_ManagerView;
+		WriteResponse  : view Axi4_WriteResponse_ManagerView;
+		ReadAddress    : view Axi4_Address_ManagerView;
+		ReadData       : view Axi4_ReadData_ManagerView;
 	end view;
-	alias Axi4_SlaveView is Axi4_MasterView'converse;
+	alias Axi4_SubordinateView is Axi4_ManagerView'converse;
 
 end package;
