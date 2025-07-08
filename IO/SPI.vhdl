@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ package SPI is
 		MISO : std_logic;
 		SS_n : std_logic_vector;
 	end record;
+	type SPI_Interface_Vector is array(natural range <>) of SPI_Interface;
 
 	view SPI_MasterView of SPI_Interface is
 		SCLK  : out;
@@ -49,5 +50,4 @@ package SPI is
 	end view;
 	alias SPI_SlaveView is SPI_MasterView'converse;
 
-	type SPI_Interface_Vector is array(natural range <>) of SPI_Interface;
 end package;

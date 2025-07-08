@@ -12,7 +12,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ library IEEE;
 use     IEEE.std_logic_1164.all;
 use     IEEE.numeric_std.all;
 
+use     work.I2C.all;
 
 -- Signal name mappings
 -- DDC -> VESA Display Data Channel
@@ -42,35 +43,29 @@ package VGA is
 		HorizontalSync : std_ulogic;
 		VerticalSync   : std_ulogic;
 	end record;
+	type SimpleVGA_Interface_Vector is array(natural range <>) of SimpleVGA_Interface;
 
-	view SimpleVGA_SenderView of SimpleVGA_Interface is
+	view SimpleVGA_TransmitterView of SimpleVGA_Interface is
 		Red            : out;
 		Green          : out;
 		Blue           : out;
 		HorizontalSync : out;
 		VerticalSync   : out;
 	end view;
-	alias SimpleVGA_ReceiverView is SimpleVGA_SenderView'converse;
-
-	type SimpleVGA_Interface_Vector is array(natural range <>) of SimpleVGA_Interface;
+	alias SimpleVGA_ReceiverView is SimpleVGA_TransmitterView'converse;
 
 
-
-
-	type VGA_PCB_Interface is record
+	type VGA_PcbInterface is record
 		Video : SimpleVGA_Interface;
-		DDC   : I2C_PCB_Interface;
+		DDC   : I2C_PcbInterface;
 	end record;
+	type VGA_PcbInterface_Vector is array(natural range <>) of VGA_PcbInterface;
 
-	view VGA_PCB_ControllerView of VGA_PCB_Interface is
-		Video : view SimpleVGA_SenderView;
-		DDC   : view I2C_PCB_View;
+	view VGA_Trasmitter_PcbView of VGA_PcbInterface is
+		Video : view SimpleVGA_TransmitterView;
+		DDC   : view I2C_PcbView;
 	end view;
-	alias VGA_PCB_MonitorView is VGA_PCB_ControllerView'converse;
-
-	type VGA_PCB_Interface_Vector is array(natural range <>) of VGA_PCB_Interface;
-
-
+	alias VGA_Monitor_PcbView is VGA_Trasmitter_PcbView'converse;
 
 
 	type VGA_Interface is record
@@ -78,11 +73,11 @@ package VGA is
 		DDC   : I2C_Interface;
 	end record;
 
-	view VGA_SenderView of VGA_Interface is
-		Video : view SimpleVGA_SenderView;
+	view VGA_TransmitterView of VGA_Interface is
+		Video : view SimpleVGA_TransmitterView;
 		DDC   : view I2C_ControllerView;
 	end view;
-	alias VGA_ReceiverView is VGA_SenderView'converse;
+	alias VGA_ReceiverView is VGA_TransmitterView'converse;
 
 	type VGA_Interface_Vector is array(natural range <>) of VGA_Interface;
 

@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -32,19 +32,18 @@ package CSE is
 		type T_Error   is (<>)  --> Not yet supported by Riviera-PRO 2020.04
 	);
 
-	type T_CSE is record
+	type CSE_Interface is record
 		Command : T_Command;
 		Status  : T_Status;
 		Error   : T_Error;
 	end record;
+	type CSE_Interface_Vector is array(natural range <>) of CSE_Interface;
 
-	view V_CSE_In of T_CSE is
-		Command : in;
-		Status  : out;
-		Error   : out;
+	view CSE_OutView of CSE_Interface is
+		Command : out;
+		Status  : in;
+		Error   : in;
 	end view;
-	alias V_CSE_Out is V_CSE_In'converse;
-
-	type T_CSE_Vector is array(natural range <>) of T_CSE;
+	alias CSE_InView is CSE_OutView'converse;
 
 end package;

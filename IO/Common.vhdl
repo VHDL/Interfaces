@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -34,8 +34,7 @@ package Common is
 		P : std_logic;
 		N : std_logic;
 	end record;
-
-	alias LVDS_Interface        is Differatial_Interface;
+	type Differatial_Interface_Vector is array(natural range <>) of Differatial_Interface;
 
 	view Differatial_OutView of Differatial_Interface is
 		P : out;
@@ -43,14 +42,10 @@ package Common is
 	end view;
 	alias Differatial_InView is Differatial_OutView'converse;
 
+	alias LVDS_Interface is Differatial_Interface;
+	alias LVDS_Interface_Vector is Differatial_Interface;
 	alias LVDS_OutView is Differatial_OutView;
 	alias LVDS_InView  is Differatial_InView;
-
-	type Differatial_Interface_Vector is
-		array(natural range <>)
-		of Differatial_Interface;
-
-	alias LVDS_Interface_Vector is Differatial_Interface;
 
 
 	-- Transceiver lanes with differential signaling
@@ -58,25 +53,23 @@ package Common is
 		TX : Differatial_Interface;
 		RX : Differatial_Interface;
 	end record;
+	type DifferentialLane_Interface_Vector is array(natural range <>) of DifferentialLane_Interface;
 
 	view DifferentialLane_TransmitterView of DifferentialLane_Interface is
 		TX : view Differatial_OutView;
 		RX : view Differatial_InView;
 	end view;
 
-	type DifferentialLane_Interface_Vector is
-		array(natural range <>)
-		of DifferentialLane_Interface;
-
 	alias LVDSLane_Interface_Vector is DifferentialLane_Interface_Vector;
 
 
 	-- Tristate (3-state) interface
 	type Tristate_Interface is record
-		I : std_logic;      -- Input
-		O : std_logic;      -- Output
-		T : std_logic;      -- Tristate / OutputEnable_n
+		I : std_ulogic;      -- Input
+		O : std_ulogic;      -- Output
+		T : std_ulogic;      -- Tristate / OutputEnable_n
 	end record;
+	type Tristate_Interface_Vector is array(natural range <>) of Tristate_Interface;
 
 	view Tristate_OutView of Tristate_Interface is
 		I : in;
@@ -85,7 +78,4 @@ package Common is
 	end view;
 	alias Tristate_InView is Tristate_OutView'converse;
 
-	type Tristate_Interface_Vector is
-		array(natural range <>)
-		of Tristate_Interface;
 end package;

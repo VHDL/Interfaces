@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ package UART is
 		RX : std_logic;
 		TX : std_logic;
 	end record;
+	type UART_Interface_Vector is array(natural range <>) of UART_Interface;
 
 	view UART_TransmitterView of UART_Interface is
 		TX  : out;
@@ -43,5 +44,4 @@ package UART is
 	end view;
 	alias UART_ReceiverView is UART_TransmitterView'converse;
 
-	type UART_Interface_Vector is array(natural range <>) of UART_Interface;
 end package;

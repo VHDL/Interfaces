@@ -13,7 +13,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -37,25 +37,24 @@ use     IEEE.std_logic_1164.all;
 -- SD  -> Serial Data;  alternatives: SData, SDIn/SDOut, DACDat, ADCDat
 package I2S is
 	type I2S_Interface is record
-		SCK : std_ulogic;
-		WS  : std_ulogic;
-		SD  : std_ulogic;
+		SCK : std_logic;
+		WS  : std_logic;
+		SD  : std_logic;
 	end record;
+	type I2S_Interface_Vector is array(natural range <>) of I2S_Interface;
 
-	view I2S_SourceSync_SenderView of I2S_Interface is
+	view I2S_SourceSync_TransmitterView of I2S_Interface is
 		SCK : out;
 		WS  : out;
 		SD  : out;
 	end view;
-	alias I2S_SourceSync_ReceiverView  is I2S_SourceSync_SenderView'converse;
+	alias I2S_SourceSync_ReceiverView  is I2S_SourceSync_TransmitterView'converse;
 
-	view I2S_DestSync_SenderView of I2S_Interface is
+	view I2S_DestSync_TransmitterView of I2S_Interface is
 		SCK : in;
 		WS  : in;
 		SD  : out;
 	end view;
-	alias I2S_DestSync_ReceiverView  is I2S_DestSync_SenderView'converse;
-
-	type I2S_Interface_Vector is array(natural range <>) of I2S_Interface;
+	alias I2S_DestSync_ReceiverView  is I2S_DestSync_TransmitterView'converse;
 
 end package;

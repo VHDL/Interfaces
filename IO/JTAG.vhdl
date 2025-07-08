@@ -15,7 +15,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -48,13 +48,13 @@ package JTAG is
 		TDO  : std_logic;
 	end record;
 
-	view JTAG_ChipView of JTAG_Interface is
+	view JTAG_DeviceView of JTAG_Interface is
 		TCK  : in;
 		TRST : in;
 		TMS  : in;
 		TDI  : in;
 		TDO  : out;
 	end view;
-	alias JTAG_TesterView is JTAG_ChipView'converse;
+	alias JTAG_TesterView is JTAG_DeviceView'converse;
 
 end package;

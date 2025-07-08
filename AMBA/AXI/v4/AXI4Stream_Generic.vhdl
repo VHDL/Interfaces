@@ -25,7 +25,7 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.Axi4Lite.all;
+use work.Axi4Stream.all;
 
 
 package Axi4Stream_Generic is
