@@ -3,14 +3,14 @@
 --   Patrick Lehmann
 --
 -- Package:
---   VHDL-2019 Common types in AXI4 interface descriptions
+--   VHDL-2019 Common types in Axi4 interface descriptions
 --
 -- Description:
 --   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -44,15 +44,15 @@ package Axi4Common is
 
 
 	-- Unique to AXI
-	subtype ID_Type               is unsigned;
-	subtype Length_Type           is unsigned(3 downto 0);
-	subtype Lock_Type             is std_ulogic_vector(3 downto 0);
-	subtype Region_Type           is std_ulogic_vector(3 downto 0);
-  subtype Cache_Type            is std_ulogic_vector(3 downto 0);
-  subtype QualityOfService_Type is std_ulogic_vector(3 downto 0);
+	subtype ID_Type     is unresolved_unsigned;
+	subtype Length_Type is unresolved_unsigned(7 downto 0);
+	subtype Lock_Type   is std_ulogic_vector(3 downto 0);
+	subtype Region_Type is std_ulogic_vector(3 downto 0);
+  subtype Cache_Type  is std_ulogic_vector(3 downto 0);
+  subtype QoS_Type    is std_ulogic_vector(3 downto 0);
 
 
-  subtype  Size_Type is unsigned(2 downto 0);
+  subtype  Size_Type is unresolved_unsigned(2 downto 0);
   constant AXI4_SIZE_1          : Size_Type := "000";
   constant AXI4_SIZE_2          : Size_Type := "001";
   constant AXI4_SIZE_4          : Size_Type := "010";
@@ -84,9 +84,9 @@ package Axi4Common is
   constant AXI4_PROTECT_NONE          : Protect_Type := "000";
 
 
-	type AXI4_System_Interface is record
-		Clock    : std_ulogic;
-		Reset_n  : std_ulogic;
+	type Axi4_System_Interface is record
+		Clock  : std_ulogic;
+		Reset  : std_ulogic;
 	end record;
 
 end package;

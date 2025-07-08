@@ -3,14 +3,14 @@
 --   Patrick Lehmann
 --
 -- Package:
---   Package instances for AXI4-Lite with predefined sizes
+--   Package instances for Axi4-Lite with predefined sizes
 --
 -- Description:
 --   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -67,8 +67,6 @@ package Axi4Lite_A32_D256 is new work.Axi4Lite_Generic
 		ADDRESS_BITS => 32,
 		DATA_BITS    => 256
 	);
-
-
 
 
 package Axi4Lite_A64_D8 is new work.Axi4Lite_Generic

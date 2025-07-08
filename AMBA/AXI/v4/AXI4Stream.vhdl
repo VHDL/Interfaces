@@ -3,14 +3,14 @@
 --   Patrick Lehmann
 --
 -- Package:
---   VHDL-2019 AXI4-Stream interface descriptions
+--   VHDL-2019 Axi4-Stream interface descriptions
 --
 -- Description:
 --   Undocumented
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2023 Open Source VHDL Group
+-- Copyright 2016-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ package Axi4Stream is
 		User      : Data_Type;
 	end record;
 
-	view Axi4Stream_SenderView of Axi4Stream_Interface is
+	view Axi4Stream_TransmitterView of Axi4Stream_Interface is
 		-- Handshake signals
 		Valid     : out;
 		Ready     : in;
@@ -60,6 +60,7 @@ package Axi4Stream is
 		-- Auxiliary signals
 		User      : out;
 	end view;
-	alias Axi4Stream_ReceiverView is Axi4Stream_SenderView'converse;
+	alias Axi4Stream_ReceiverView is Axi4Stream_TransmitterView'converse;
 
+	alias Axi4Stream_SenderView is Axi4Stream_TransmitterView;
 end package;
