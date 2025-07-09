@@ -59,6 +59,11 @@ jobs:
 
           ../scripts/NVC.sh
 
+      - name: 🚧 Inspect Ant+JUnit Unittest Summary XML
+#        if: matrix.name == 'Ubuntu'
+        run: |
+          cat temp/*.xml
+
       - name: '📤 Upload artifact: logs'
         uses: actions/upload-artifact@v4
         with:
