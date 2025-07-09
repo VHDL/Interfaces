@@ -54,7 +54,7 @@ package Axi4 is
 		User      : User_Type;
 	end record;
 	type Axi4_Address_Interface_Vector is array(natural range <>) of Axi4_Address_Interface;
-	
+
 
 	type Axi4_WriteData_Interface is record
 		-- Handshake signals
