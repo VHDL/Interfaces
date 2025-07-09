@@ -15,13 +15,46 @@
 # limitations under the License.                                                                                       #
 # ==================================================================================================================== #
 CompileOrderList="${1:-../compileorder.list}"
+UnittestSummaryFile="${2:-unittest.xml}"
+UnittestTestsuitename="${3:-Interfaces}"
 
-while read -r package; do
-	printf "Analyzing '${package}' ... "
-	nvc --std=2019 -a "../${package}"
-	if [[ $? -eq 0 ]]; then
+printf "Open '${UnittestSummaryFile}' ...\n"
+exec 3>${UnittestSummaryFile}
+
+printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"                      >&3
+printf "<testsuites time=\"%%TIME%%\">\n"                                    >&3
+printf "\t<testsuite name=\"${UnittestTestsuitename}\" time=\"%%TIME%%\">\n" >&3
+
+libraryBegin=$(date +%s%N)
+while read -r packagePath; do
+	package=$(basename "${packagePath}")
+	testname="$package"
+	classname=$(dirname "${packagePath}" | sed 's|/|.|g')
+
+	printf "Analyzing '${packagePath}' ... "
+	analyzeBegin=$(date +%s%N)
+	output=$(nvc --std=2019 -a "../${packagePath}")
+	retCode=$?
+	duration=$((($(date +%s%N) - ${analyzeBegin})/1000))
+	if [[ $retCode -eq 0 ]]; then
 		printf "  OK\n"
+		printf "\t\t<testcase name=\"${testname}\" classname=\"${classname}\" time=\"${duration}\" />\n" >&3
 	else
 		printf "  FAILED\n"
+		printf "\t\t<testcase name=\"${testname}\" classname=\"${classname}\" time=\"${duration}\" >\n"  >&3
+		printf "\t\t\t<failure>${output}</failure>\n"                                                    >&3
+		printf "\t\t</testcase>\n"                                                                       >&3
 	fi
-done < <(grep -vP '^\s*$@^\s*\#' ${CompileOrderList})
+done < <(grep -vP '^\s*$|^\s*\#' ${CompileOrderList})
+duration=$((($(date +%s%N) - ${libraryBegin})/1000))
+
+printf "\t</testsuite>\n" >&3
+printf "</testsuites>\n"  >&3
+exec 3>-
+
+printf "Duration: ${duration} s\n"
+sed -i "s/%%TIME%%/${duration}/g" ${UnittestSummaryFile}
+
+printf "=========================\n"
+cat ${UnittestSummaryFile}
+printf "=========================\n"
