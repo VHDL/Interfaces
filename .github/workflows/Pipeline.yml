@@ -35,14 +35,6 @@ jobs:
         with:
           msystem: ucrt64
           update: true
-#          install: git tree
-#          pacboy: tcl:p tcllib:p
-
-      - name: 🐧🛠️ Install tcl and tcllib
-        if: matrix.name == 'Ubuntu'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends tcl tcllib
 
       - name: 🔧 Install NVC
         uses: nickg/setup-nvc-ci@v1
@@ -82,7 +74,8 @@ jobs:
     needs:
       - NVC
     with:
-      testsuite-summary-name: "Interfaces"
-      dorny:                  true
-#      codecov:                true
+      unittest_artifacts_pattern: "junit-*"
+      testsuite-summary-name:     "Interfaces"
+      dorny:                      true
+#      codecov:                    true
     secrets: inherit
