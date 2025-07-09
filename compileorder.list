@@ -1,4 +1,3 @@
-#!/bin/bash
 # ==================================================================================================================== #
 # Copyright 2016-2025 Open Source VHDL Group                                                                           #
 #                                                                                                                      #
@@ -14,14 +13,40 @@
 # See the License for the specific language governing permissions and                                                  #
 # limitations under the License.                                                                                       #
 # ==================================================================================================================== #
-CompileOrderList="${1:-../compileorder.list}"
+# VHDLRevision: VHDL-2019
+# VHDLLibrary:  Interfaces
 
-while read -r package; do
-	printf "Analyzing '${package}' ... "
-	nvc --std=2019 -a "../${package}"
-	if [[ $? -eq 0 ]]; then
-		printf "  OK\n"
-	else
-		printf "  FAILED\n"
-	fi
-done < <(grep -vP '^\s*$@^\s*\#' ${CompileOrderList})
+# Common definitions
+IO/Common.vhdl
+
+# Internal bus structures
+AMBA/AXI/v4/AXI4Common.vhdl
+AMBA/AXI/v4/AXI4.vhdl
+AMBA/AXI/v4/AXI4_Generic.vhdl
+
+AMBA/AXI/v4/AXI4Lite.vhdl
+AMBA/AXI/v4/AXI4Lite_Generic.vhdl
+AMBA/AXI/v4/AXI4Lite.presized.vhdl
+
+AMBA/AXI/v4/AXI4Stream.vhdl
+AMBA/AXI/v4/AXI4Stream_Generic.vhdl
+
+# Low-speed interfaces
+IO/I2C.vhdl
+IO/SPI.vhdl
+IO/I2S.vhdl
+IO/JTAG.vhdl
+IO/UART.vhdl
+
+# Ethernet
+IO/Ethernet.vhdl
+IO/Cages.vhdl
+
+# Video interfaces
+Video/VGA.vhdl
+MIPI/C-PHY.vhdl
+MIPI/D-PHY.vhdl
+MIPI/M-PHY.vhdl
+
+# Miscellaneous interfaces
+PoC/CSE.vhdl

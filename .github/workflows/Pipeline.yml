@@ -85,7 +85,7 @@ jobs:
           mkdir -p temp
           cd temp
 
-          ../scripts/NVC.tcl
+          ../scripts/NVC.sh
 
       - name: 🚧 Run tests on Windows + MSYS2/UCRT64
         if: matrix.name == 'Windows' && startsWith(matrix.shell, 'msys2')
@@ -95,4 +95,4 @@ jobs:
           mkdir -p temp
           cd temp
 
-          ../scripts/NVC.tcl
+          ../scripts/NVC.sh
