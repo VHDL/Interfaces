@@ -30,7 +30,7 @@ library IEEE;
 use     IEEE.std_logic_1164.all;
 use     IEEE.numeric_std.all;
 
-use     work.Axi4Cmmon.all;
+use     work.Axi4Common.all;
 
 
 package Axi4 is

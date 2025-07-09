@@ -37,8 +37,10 @@ while read -r packagePath; do
 
 	printf "  %-60s " "Analyzing '${packagePath}' ..."
 	analyzeBegin=$(date +%s%N)
-	output=$(nvc --std=2019 -a "../${packagePath}")
+	output=$(nvc --std=2019 -a "../${packagePath}" 2>&1)
 	retCode=$?
+	error=${output//</&lt;}
+	error=${error//>/&gt;}
 	duration=$(echo "$(date +%s%N) ${analyzeBegin}" | awk '{printf "%.3f", ($1 - $2)/1000000000}')
 	printf "    <testcase name=\"%s\" classname=\"%s\" time=\"%s\"" "${testname}" "${classname}" "${duration}" >&3
 	if [[ $retCode -eq 0 ]]; then
@@ -47,7 +49,7 @@ while read -r packagePath; do
 	else
 		printf "  FAILED\n"
 		printf " >\n"                                       >&3
-		printf "      <failure>%s</failure>\n" "${output}"  >&3
+		printf "      <failure>%s</failure>\n" "${error}"   >&3
 		printf "    </testcase>\n"                          >&3
 	fi
 done < <(grep -vP '^\s*$|^\s*\#' ${CompileOrderList})
