@@ -85,8 +85,8 @@ package Axi4 is
 
 	type Axi4_ReadData_Interface is record
 		-- Handshake signals
-		Valid   : std_ulogic;
-		Ready   : std_ulogic;
+		Valid     : std_ulogic;
+		Ready     : std_ulogic;
 
 		-- Payload signals
 		ID        : ID_Type;

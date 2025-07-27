@@ -32,10 +32,11 @@ package Axi4_Generic is
 	generic (
 		constant ADDRESS_BITS : positive;
 		constant DATA_BITS    : positive;
-		constant STROBE_BITS  : positive := DATA_BITS / 8;
 		constant ID_BITS      : positive;
 		constant USER_BITS    : positive
 	);
+
+	constant STROBE_BITS  : positive := DATA_BITS / 8;
 
 	subtype Axi4_Address_SizedInterface is Axi4_Address_Interface(
 		ID(ID_BITS - 1 downto 0),
@@ -86,7 +87,7 @@ package Axi4_Generic is
 			User(USER_BITS - 1 downto 0)
 		)
 	);
-	
+
 	subtype Axi4_SizedInterface_Vector is Axi4_Interface_Vector(open)(
 		WriteAddress(
 			ID(ID_BITS - 1 downto 0),
