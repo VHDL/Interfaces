@@ -57,7 +57,7 @@ Wishbone/vB3/Wishbone.vhdl
 Wishbone/vB3/Wishbone_Generic.vhdl
 
 # Avalon Memory-Mapped Interfaces
-Avalon/v1/AvalonMMCommon.vhdl
+Avalon/v1/AvalonCommon.vhdl
 Avalon/v1/AvalonMM.vhdl
 Avalon/v1/AvalonMM_Generic.vhdl
 

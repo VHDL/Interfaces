@@ -59,6 +59,6 @@ analyze Wishbone/vB3/Wishbone.vhdl
 analyze Wishbone/vB3/Wishbone_Generic.vhdl
 
 # Avalon interfaces
-analyze Avalon/v1/AvalonMMCommon.vhdl
+analyze Avalon/v1/AvalonCommon.vhdl
 analyze Avalon/v1/AvalonMM.vhdl
 analyze Avalon/v1/AvalonMM_Generic.vhdl
