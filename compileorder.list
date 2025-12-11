@@ -50,3 +50,10 @@ MIPI/M-PHY.vhdl
 
 # Miscellaneous interfaces
 PoC/CSE.vhdl
+
+# Wishbone B.3 Interfaces  
+Wishbone/vB3/WishboneCommon.vhdl
+Wishbone/vB3/Wishbone.vhdl
+Wishbone/vB3/Wishbone_Generic.vhdl
+
+

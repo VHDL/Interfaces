@@ -52,3 +52,9 @@ analyze MIPI/M-PHY.vhdl
 
 # Miscellaneous interfaces
 analyze PoC/CSE.vhdl
+
+# Wishbone interfaces
+analyze Wishbone/vB3/WishboneCommon.vhdl
+analyze Wishbone/vB3/Wishbone.vhdl
+analyze Wishbone/vB3/Wishbone_Generic.vhdl
+
