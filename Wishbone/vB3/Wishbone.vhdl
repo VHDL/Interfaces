@@ -26,38 +26,42 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.WishboneCommon.all;
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
+
+use     work.WishboneCommon.all;
 
 package Wishbone is
 	-- Classic Wishbone Interface (matching spec signal names)
 	type Wishbone_Interface is record
 		-- Master signals (outputs from master perspective)
-		Cyc       : bit;            -- CYC_O - Cycle
-		Stb       : bit;            -- STB_O - Strobe
-		We        : bit;            -- WE_O  - Write Enable
+		Cyc       : std_ulogic;     -- CYC_O - Cycle
+		Stb       : std_ulogic;     -- STB_O - Strobe
+		We        : std_ulogic;     -- WE_O  - Write Enable
 		Addr      : Addr_Type;      -- ADR_O - Address
-		Dat_m     : Data_Type;      -- DAT_O - Data (Master to Slave)
+		DatM      : Data_Type;      -- DAT_O - Data (Master to Slave)
 		Sel       : Sel_Type;       -- SEL_O - Select
 		
 		-- Slave signals (outputs from slave perspective)
-		Ack       : bit;            -- ACK_I - Acknowledge
-		Err       : bit;            -- ERR_I - Error
-		Rty       : bit;            -- RTY_I - Retry
-		Dat_s     : Data_Type;      -- DAT_I - Data (Slave to Master)
+		Ack       : std_ulogic;     -- ACK_I - Acknowledge
+		Err       : std_ulogic;     -- ERR_I - Error
+		Rty       : std_ulogic;     -- RTY_I - Retry
+		DatS      : Data_Type;      -- DAT_I - Data (Slave to Master)
 		
 		-- Optional signals for pipelined/burst modes
 		Cti       : Cti_Type;       -- CTI_O - Cycle Type Identifier
 		Bte       : Bte_Type;       -- BTE_O - Burst Type Extension
 		
 		-- Optional tag signals
-		Tgd_m     : Tgd_Type;       -- TGD_O - Tag Data (Master)
-		Tgd_s     : Tgd_Type;       -- TGD_I - Tag Data (Slave)
+		TgdM      : Tgd_Type;       -- TGD_O - Tag Data (Master)
+		TgdS      : Tgd_Type;       -- TGD_I - Tag Data (Slave)
 		Tga       : Tga_Type;       -- TGA_O - Tag Address
 		Tgc       : Tgc_Type;       -- TGC_O - Tag Cycle
 		
 		-- Optional signals
-		Lock      : bit;            -- LOCK_O - Lock
-		Stall     : bit;            -- STALL_I - Pipeline stall
+		Lock      : std_ulogic;     -- LOCK_O - Lock
+		Stall     : std_ulogic;     -- STALL_I - Pipeline stall
 	end record;
 	type Wishbone_Interface_Vector is array(natural range <>) of Wishbone_Interface;
 
@@ -68,11 +72,11 @@ package Wishbone is
 		Stb       : out;
 		We        : out;
 		Addr      : out;
-		Dat_m     : out;
+		DatM      : out;
 		Sel       : out;
 		Cti       : out;
 		Bte       : out;
-		Tgd_m     : out;
+		TgdM      : out;
 		Tga       : out;
 		Tgc       : out;
 		Lock      : out;
@@ -81,8 +85,8 @@ package Wishbone is
 		Ack       : in;
 		Err       : in;
 		Rty       : in;
-		Dat_s     : in;
-		Tgd_s     : in;
+		DatS      : in;
+		TgdS      : in;
 		Stall     : in;
 	end view;
 	alias Wishbone_SlaveView is Wishbone_MasterView'converse;
@@ -90,16 +94,16 @@ package Wishbone is
 	-- Simplified interface without optional signals
 	type Wishbone_Simple_Interface is record
 		-- Master signals
-		Cyc       : bit;
-		Stb       : bit;
-		We        : bit;
+		Cyc       : std_ulogic;
+		Stb       : std_ulogic;
+		We        : std_ulogic;
 		Addr      : Addr_Type;
-		Dat_m     : Data_Type;
+		DatM      : Data_Type;
 		Sel       : Sel_Type;
 		
 		-- Slave signals
-		Ack       : bit;
-		Dat_s     : Data_Type;
+		Ack       : std_ulogic;
+		DatS      : Data_Type;
 	end record;
 	type Wishbone_Simple_Interface_Vector is array(natural range <>) of Wishbone_Simple_Interface;
 
@@ -109,12 +113,12 @@ package Wishbone is
 		Stb       : out;
 		We        : out;
 		Addr      : out;
-		Dat_m     : out;
+		DatM      : out;
 		Sel       : out;
 		
 		-- Master inputs
 		Ack       : in;
-		Dat_s     : in;
+		DatS      : in;
 	end view;
 	alias Wishbone_Simple_SlaveView is Wishbone_Simple_MasterView'converse;
 
