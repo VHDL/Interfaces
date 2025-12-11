@@ -26,65 +26,69 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AvalonCommon.all;
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
+
+use     work.AvalonCommon.all;
 
 package AvalonST is
 	-- Avalon Streaming Interface (matching spec signal names)
 	type AvalonST_Interface is record
 		-- Handshake signals
-		valid           : bit;               -- Valid
-		ready           : bit;               -- Ready
+		Valid         : std_ulogic;            -- Valid
+		Ready         : std_ulogic;            -- Ready
 		
 		-- Payload signals
-		data            : Data_Type;         -- Data
+		Data          : Data_Type;             -- Data
 		
 		-- Packet signals
-		startofpacket   : bit;               -- Start of packet
-		endofpacket     : bit;               -- End of packet
-		empty           : bit_vector;        -- Empty (number of empty symbols)
+		StartOfPacket : std_ulogic;            -- Start of packet
+		EndOfPacket   : std_ulogic;            -- End of packet
+		Empty         : std_ulogic_vector;     -- Empty (number of empty symbols)
 		
 		-- Error signal
-		error           : bit_vector;        -- Error
+		Error         : std_ulogic_vector;     -- Error
 		
 		-- Channel signal
-		channel         : bit_vector;        -- Channel
+		Channel       : std_ulogic_vector;     -- Channel
 	end record;
 	type AvalonST_Interface_Vector is array(natural range <>) of AvalonST_Interface;
 
 	-- Source view (from source's perspective)
 	view AvalonST_SourceView of AvalonST_Interface is
 		-- Source outputs
-		valid           : out;
-		data            : out;
-		startofpacket   : out;
-		endofpacket     : out;
-		empty           : out;
-		error           : out;
-		channel         : out;
+		Valid         : out;
+		Data          : out;
+		StartOfPacket : out;
+		EndOfPacket   : out;
+		Empty         : out;
+		Error         : out;
+		Channel       : out;
 		
 		-- Source inputs (sink outputs)
-		ready           : in;
+		Ready         : in;
 	end view;
 	alias AvalonST_SinkView is AvalonST_SourceView'converse;
 
 	-- Simplified interface without optional signals
 	type AvalonST_Simple_Interface is record
 		-- Handshake signals
-		valid           : bit;
-		ready           : bit;
+		Valid : std_ulogic;
+		Ready : std_ulogic;
 		
 		-- Payload signal
-		data            : Data_Type;
+		Data  : Data_Type;
 	end record;
 	type AvalonST_Simple_Interface_Vector is array(natural range <>) of AvalonST_Simple_Interface;
 
 	view AvalonST_Simple_SourceView of AvalonST_Simple_Interface is
 		-- Source outputs
-		valid           : out;
-		data            : out;
+		Valid : out;
+		Data  : out;
 		
 		-- Source inputs
-		ready           : in;
+		Ready : in;
 	end view;
 	alias AvalonST_Simple_SinkView is AvalonST_Simple_SourceView'converse;
 

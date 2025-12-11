@@ -38,34 +38,34 @@ package AvalonMM_Generic is
 
 	-- Full Avalon-MM interface with all optional signals
 	subtype AvalonMM_SizedInterface is AvalonMM_Interface(
-		address(ADDRESS_BITS - 1 downto 0),
-		writedata(DATA_BITS - 1 downto 0),
-		readdata(DATA_BITS - 1 downto 0),
-		byteenable(BYTEENABLE_BITS - 1 downto 0),
-		burstcount(BURSTCOUNT_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0),
+		BurstCount(BURSTCOUNT_BITS - 1 downto 0)
 	);
 
 	subtype AvalonMM_SizedInterface_Vector is AvalonMM_Interface_Vector(open)(
-		address(ADDRESS_BITS - 1 downto 0),
-		writedata(DATA_BITS - 1 downto 0),
-		readdata(DATA_BITS - 1 downto 0),
-		byteenable(BYTEENABLE_BITS - 1 downto 0),
-		burstcount(BURSTCOUNT_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0),
+		BurstCount(BURSTCOUNT_BITS - 1 downto 0)
 	);
 
 	-- Simplified Avalon-MM interface
 	subtype AvalonMM_Simple_SizedInterface is AvalonMM_Simple_Interface(
-		address(ADDRESS_BITS - 1 downto 0),
-		writedata(DATA_BITS - 1 downto 0),
-		readdata(DATA_BITS - 1 downto 0),
-		byteenable(BYTEENABLE_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
 	);
 
 	subtype AvalonMM_Simple_SizedInterface_Vector is AvalonMM_Simple_Interface_Vector(open)(
-		address(ADDRESS_BITS - 1 downto 0),
-		writedata(DATA_BITS - 1 downto 0),
-		readdata(DATA_BITS - 1 downto 0),
-		byteenable(BYTEENABLE_BITS - 1 downto 0)
+		Address(ADDRESS_BITS - 1 downto 0),
+		WriteData(DATA_BITS - 1 downto 0),
+		ReadData(DATA_BITS - 1 downto 0),
+		ByteEnable(BYTEENABLE_BITS - 1 downto 0)
 	);
 
 end package;

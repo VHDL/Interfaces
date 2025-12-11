@@ -37,26 +37,26 @@ package AvalonST_Generic is
 
 	-- Full Avalon-ST interface with all optional signals
 	subtype AvalonST_SizedInterface is AvalonST_Interface(
-		data(DATA_BITS - 1 downto 0),
-		empty(EMPTY_BITS - 1 downto 0),
-		error(ERROR_BITS - 1 downto 0),
-		channel(CHANNEL_BITS - 1 downto 0)
+		Data(DATA_BITS - 1 downto 0),
+		Empty(EMPTY_BITS - 1 downto 0),
+		Error(ERROR_BITS - 1 downto 0),
+		Channel(CHANNEL_BITS - 1 downto 0)
 	);
 
 	subtype AvalonST_SizedInterface_Vector is AvalonST_Interface_Vector(open)(
-		data(DATA_BITS - 1 downto 0),
-		empty(EMPTY_BITS - 1 downto 0),
-		error(ERROR_BITS - 1 downto 0),
-		channel(CHANNEL_BITS - 1 downto 0)
+		Data(DATA_BITS - 1 downto 0),
+		Empty(EMPTY_BITS - 1 downto 0),
+		Error(ERROR_BITS - 1 downto 0),
+		Channel(CHANNEL_BITS - 1 downto 0)
 	);
 
 	-- Simplified Avalon-ST interface
 	subtype AvalonST_Simple_SizedInterface is AvalonST_Simple_Interface(
-		data(DATA_BITS - 1 downto 0)
+		Data(DATA_BITS - 1 downto 0)
 	);
 
 	subtype AvalonST_Simple_SizedInterface_Vector is AvalonST_Simple_Interface_Vector(open)(
-		data(DATA_BITS - 1 downto 0)
+		Data(DATA_BITS - 1 downto 0)
 	);
 
 end package;

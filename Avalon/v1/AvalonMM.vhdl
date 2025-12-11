@@ -26,85 +26,89 @@
 -- limitations under the License.
 -- =============================================================================
 
-use work.AvalonCommon.all;
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
+
+use     work.AvalonCommon.all;
 
 package AvalonMM is
 	-- Avalon Memory-Mapped Interface (matching spec signal names)
 	type AvalonMM_Interface is record
-		-- Master signals (names match Avalon spec exactly)
-		address         : Address_Type;      -- Address
-		read            : bit;               -- Read request
-		write           : bit;               -- Write request
-		writedata       : Data_Type;         -- Write data
-		byteenable      : ByteEnable_Type;   -- Byte enable
+		-- Master signals
+		Address            : Address_Type;      -- Address
+		Read               : std_ulogic;        -- Read request
+		Write              : std_ulogic;        -- Write request
+		WriteData          : Data_Type;         -- Write data
+		ByteEnable         : ByteEnable_Type;   -- Byte enable
 		
 		-- Slave signals
-		readdata        : Data_Type;         -- Read data
-		readdatavalid   : bit;               -- Read data valid
-		waitrequest     : bit;               -- Wait request
-		response        : Response_Type;     -- Response
+		ReadData           : Data_Type;         -- Read data
+		ReadDataValid      : std_ulogic;        -- Read data valid
+		WaitRequest        : std_ulogic;        -- Wait request
+		Response           : Response_Type;     -- Response
 		
 		-- Optional burst signals
-		burstcount      : BurstCount_Type;   -- Burst count
+		BurstCount         : BurstCount_Type;   -- Burst count
 		
 		-- Optional pipelining signals
-		writeresponsevalid : bit;            -- Write response valid
+		WriteResponseValid : std_ulogic;        -- Write response valid
 		
 		-- Optional lock signal
-		lock            : bit;               -- Lock
+		Lock               : std_ulogic;        -- Lock
 		
 		-- Optional debug signals
-		debugaccess     : bit;               -- Debug access
+		DebugAccess        : std_ulogic;        -- Debug access
 	end record;
 	type AvalonMM_Interface_Vector is array(natural range <>) of AvalonMM_Interface;
 
 	-- Master view (from master's perspective)
 	view AvalonMM_MasterView of AvalonMM_Interface is
 		-- Master outputs
-		address         : out;
-		read            : out;
-		write           : out;
-		writedata       : out;
-		byteenable      : out;
-		burstcount      : out;
-		lock            : out;
-		debugaccess     : out;
+		Address            : out;
+		Read               : out;
+		Write              : out;
+		WriteData          : out;
+		ByteEnable         : out;
+		BurstCount         : out;
+		Lock               : out;
+		DebugAccess        : out;
 		
 		-- Master inputs (slave outputs)
-		readdata        : in;
-		readdatavalid   : in;
-		waitrequest     : in;
-		response        : in;
-		writeresponsevalid : in;
+		ReadData           : in;
+		ReadDataValid      : in;
+		WaitRequest        : in;
+		Response           : in;
+		WriteResponseValid : in;
 	end view;
 	alias AvalonMM_SlaveView is AvalonMM_MasterView'converse;
 
 	-- Simplified interface without optional signals
 	type AvalonMM_Simple_Interface is record
 		-- Master signals
-		address         : Address_Type;
-		read            : bit;
-		write           : bit;
-		writedata       : Data_Type;
-		byteenable      : ByteEnable_Type;
+		Address     : Address_Type;
+		Read        : std_ulogic;
+		Write       : std_ulogic;
+		WriteData   : Data_Type;
+		ByteEnable  : ByteEnable_Type;
 		
 		-- Slave signals
-		readdata        : Data_Type;
-		waitrequest     : bit;
+		ReadData    : Data_Type;
+		WaitRequest : std_ulogic;
 	end record;
 	type AvalonMM_Simple_Interface_Vector is array(natural range <>) of AvalonMM_Simple_Interface;
 
 	view AvalonMM_Simple_MasterView of AvalonMM_Simple_Interface is
 		-- Master outputs
-		address         : out;
-		read            : out;
-		write           : out;
-		writedata       : out;
-		byteenable      : out;
+		Address     : out;
+		Read        : out;
+		Write       : out;
+		WriteData   : out;
+		ByteEnable  : out;
 		
 		-- Master inputs
-		readdata        : in;
-		waitrequest     : in;
+		ReadData    : in;
+		WaitRequest : in;
 	end view;
 	alias AvalonMM_Simple_SlaveView is AvalonMM_Simple_MasterView'converse;
 

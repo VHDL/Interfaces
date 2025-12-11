@@ -25,23 +25,27 @@
 -- limitations under the License.
 -- =============================================================================
 
+library IEEE;
+use     IEEE.std_logic_1164.all;
+use     IEEE.numeric_std.all;
+
 package AvalonCommon is
-	-- Common types (native VHDL-2019 bit types)
-	subtype Data_Type        is bit_vector;
-	subtype Address_Type     is bit_vector;
-	subtype ByteEnable_Type  is bit_vector;
-	subtype BurstCount_Type  is bit_vector;
+	-- Common types
+	subtype Data_Type        is std_ulogic_vector;
+	subtype Address_Type     is unsigned;
+	subtype ByteEnable_Type  is std_ulogic_vector;
+	subtype BurstCount_Type  is unsigned;
 
 	-- Avalon-MM Response
-	subtype Response_Type is bit_vector(1 downto 0);
+	subtype Response_Type is std_ulogic_vector(1 downto 0);
 	constant AVALON_RESP_OKAY          : Response_Type := "00";
 	constant AVALON_RESP_RESERVED      : Response_Type := "01";
 	constant AVALON_RESP_SLAVEERROR    : Response_Type := "10";
 	constant AVALON_RESP_DECODEERROR   : Response_Type := "11";
 
 	type Avalon_System_Interface is record
-		Clk    : bit;
-		Reset  : bit;
+		Clk    : std_ulogic;
+		Reset  : std_ulogic;
 	end record;
 
 end package;
