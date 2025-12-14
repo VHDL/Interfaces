@@ -56,5 +56,6 @@ PoC/CSE.vhdl
 Avalon/v1/AvalonCommon.vhdl
 Avalon/v1/AvalonMM.vhdl
 Avalon/v1/AvalonMM_Generic.vhdl
-
+Avalon/v1/AvalonST.vhdl
+Avalon/v1/AvalonST_Generic.vhdl
 

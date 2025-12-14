@@ -10,7 +10,7 @@
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2025 Open Source VHDL Group
+-- Copyright 2025-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -38,13 +38,13 @@ package AvalonCommon is
 
 	-- Avalon-MM Response
 	subtype Response_Type is std_ulogic_vector(1 downto 0);
-	constant AVALON_RESP_OKAY          : Response_Type := "00";
-	constant AVALON_RESP_RESERVED      : Response_Type := "01";
-	constant AVALON_RESP_SLAVEERROR    : Response_Type := "10";
-	constant AVALON_RESP_DECODEERROR   : Response_Type := "11";
+	constant AVALON_RESPONSE_OKAY          : Response_Type := "00";
+	constant AVALON_RESPONSE_RESERVED      : Response_Type := "01";
+	constant AVALON_RESPONSE_SLAVE_ERROR   : Response_Type := "10";
+	constant AVALON_RESPONSE_DECODE_ERROR  : Response_Type := "11";
 
 	type Avalon_System_Interface is record
-		Clk    : std_ulogic;
+		Clock  : std_ulogic;
 		Reset  : std_ulogic;
 	end record;
 
