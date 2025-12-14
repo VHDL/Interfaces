@@ -7,11 +7,10 @@
 --
 -- Description:
 --   Signal names match Wishbone B.4 specification (Cyc, Stb, Ack, Err, etc.)
---   Uses native VHDL-2019 bit types
 --
 -- License:
 -- =============================================================================
--- Copyright 2016-2025 Open Source VHDL Group
+-- Copyright 2025-2025 Open Source VHDL Group
 --
 -- Licensed under the Apache License, Version 2.0 (the "License");
 -- you may not use this file except in compliance with the License.
@@ -34,34 +33,36 @@ use     work.WishboneCommon.all;
 
 package Wishbone is
 	-- Classic Wishbone Interface (matching spec signal names)
+	type Wishbone_Tag_Interface is record
+		Cycle   : Tag_Cycle_Type;
+		Address : Tag_Address_Type;
+		DataOut : Tag_Data_Type;
+		DataIn  : Tag_Data_Type;
+	end record;
+
 	type Wishbone_Interface is record
 		-- Master signals (outputs from master perspective)
-		Cyc       : std_ulogic;     -- CYC_O - Cycle
-		Stb       : std_ulogic;     -- STB_O - Strobe
-		We        : std_ulogic;     -- WE_O  - Write Enable
-		Addr      : Addr_Type;      -- ADR_O - Address
-		DatM      : Data_Type;      -- DAT_O - Data (Master to Slave)
-		Sel       : Sel_Type;       -- SEL_O - Select
+		Cycle       : std_ulogic;     -- CYC_O - Cycle
+		Strobe      : std_ulogic;     -- STB_O - Strobe
+		WriteEnable : std_ulogic;     -- WE_O  - Write Enable
+		Address     : Address_Type;   -- ADR_O - Address
+		DataOut     : Data_Type;      -- DAT_O - Data (Master to Slave)
+		Select      : Select_Type;    -- SEL_O - Select
 		
 		-- Slave signals (outputs from slave perspective)
-		Ack       : std_ulogic;     -- ACK_I - Acknowledge
-		Err       : std_ulogic;     -- ERR_I - Error
-		Rty       : std_ulogic;     -- RTY_I - Retry
-		DatS      : Data_Type;      -- DAT_I - Data (Slave to Master)
+		Acknoledge  : std_ulogic;     -- ACK_I - Acknowledge
+		Error       : std_ulogic;     -- ERR_I - Error
+		Retry       : std_ulogic;     -- RTY_I - Retry
+		DataIn      : Data_Type;      -- DAT_I - Data (Slave to Master)
 		
 		-- Optional signals for pipelined/burst modes
-		Cti       : Cti_Type;       -- CTI_O - Cycle Type Identifier
-		Bte       : Bte_Type;       -- BTE_O - Burst Type Extension
-		
-		-- Optional tag signals
-		TgdM      : Tgd_Type;       -- TGD_O - Tag Data (Master)
-		TgdS      : Tgd_Type;       -- TGD_I - Tag Data (Slave)
-		Tga       : Tga_Type;       -- TGA_O - Tag Address
-		Tgc       : Tgc_Type;       -- TGC_O - Tag Cycle
+		CycleType   : CycleType_Type;       -- CTI_O - Cycle Type Identifier
+		BurstType   : BurstType_Type;       -- BTE_O - Burst Type Extension
 		
 		-- Optional signals
-		Lock      : std_ulogic;     -- LOCK_O - Lock
-		Stall     : std_ulogic;     -- STALL_I - Pipeline stall
+		Tag         : Wishbone_Tag_Interface;
+		Lock        : std_ulogic;     -- LOCK_O - Lock
+		Stall       : std_ulogic;     -- STALL_I - Pipeline stall
 	end record;
 	type Wishbone_Interface_Vector is array(natural range <>) of Wishbone_Interface;
 
