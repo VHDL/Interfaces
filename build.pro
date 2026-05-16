@@ -64,6 +64,10 @@ analyze Network/Cages.vhdl
 # Miscellaneous interfaces
 analyze PoC/CSE.vhdl
 
+# High-speed serial interfaces - PCI Express
+analyze HighSpeed/PCIe/v4/PCIeCommon.vhdl
+analyze HighSpeed/PCIe/v4/PCIe.vhdl
+
 # Video interfaces
 analyze Video/VGA.vhdl
 analyze Video/C-PHY.vhdl

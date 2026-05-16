@@ -62,6 +62,10 @@ Network/Cages.vhdl
 # Miscellaneous interfaces
 PoC/CSE.vhdl
 
+# High-speed serial interfaces - PCI Express
+HighSpeed/PCIe/v4/PCIeCommon.vhdl
+HighSpeed/PCIe/v4/PCIe.vhdl
+
 # Video interfaces
 Video/VGA.vhdl
 Video/C-PHY.vhdl
